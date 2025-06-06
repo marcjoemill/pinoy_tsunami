@@ -1,0 +1,58 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvf2kai564eus"]
+
+[ext_resource type="Texture2D" uid="uid://dphmf6clx2mvv" path="res://assets/graphics/backgrounds/flatbg.jpg" id="1_o5qli"]
+[ext_resource type="PackedScene" uid="uid://bnw55jeq4voyh" path="res://scenes/Player.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://nxux4xnu267n" path="res://scenes/GroundSegment.tscn" id="2_sugp2"]
+
+[sub_resource type="GDScript" id="GDScript_ig7tw"]
+script/source = "extends Node2D
+
+@export var ground_scene: PackedScene
+@export var segment_width: float = 1000  # Should match your ground segment width
+var last_segment_x: float = 0
+
+@onready var player = $Player  # Assuming player is direct child
+@onready var viewport = get_viewport()
+
+func _ready():
+	# Spawn initial ground
+	spawn_ground(0)
+	spawn_ground(segment_width)
+
+func spawn_ground(x_pos: float):
+	if !ground_scene:
+		push_error(\"Ground scene not assigned!\")
+		return
+		
+	var new_ground = ground_scene.instantiate()
+	new_ground.position.x = x_pos
+	add_child(new_ground)
+	last_segment_x = x_pos
+
+func _process(_delta):
+	# Calculate camera's right edge in world space
+	var camera_right_edge = player.global_position.x + (viewport.size.x / 2)
+	
+	# Spawn new segment when camera approaches end
+	if camera_right_edge > last_segment_x - segment_width:
+		spawn_ground(last_segment_x + segment_width)
+		
+	# Delete passed segments to save memory
+	for child in get_children():
+		if child is StaticBody2D and child.position.x < player.global_position.x - segment_width * 2:
+			child.queue_free()
+"
+
+[node name="Main" type="Node2D"]
+position = Vector2(-1, -3)
+script = SubResource("GDScript_ig7tw")
+ground_scene = ExtResource("2_sugp2")
+
+[node name="Background1" type="Sprite2D" parent="."]
+position = Vector2(-88, -331)
+scale = Vector2(0.998438, 0.989063)
+texture = ExtResource("1_o5qli")
+centered = false
+
+[node name="Player" parent="." instance=ExtResource("2_0wfyh")]
+position = Vector2(-11, -22)
