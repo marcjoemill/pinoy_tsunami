@@ -8,7 +8,7 @@
 script/source = "extends Node2D
 
 @export var ground_scene: PackedScene
-@export var segment_width: float = 1000  # Should match your ground segment width
+@export var segment_width: float = 360  # Should match your ground segment width
 var last_segment_x: float = 0
 
 @onready var player = $Player  # Assuming player is direct child
@@ -26,6 +26,7 @@ func spawn_ground(x_pos: float):
 		
 	var new_ground = ground_scene.instantiate()
 	new_ground.position.x = x_pos
+	new_ground.z_index = -1
 	add_child(new_ground)
 	last_segment_x = x_pos
 
@@ -49,10 +50,11 @@ script = SubResource("GDScript_ig7tw")
 ground_scene = ExtResource("2_sugp2")
 
 [node name="Background1" type="Sprite2D" parent="."]
-position = Vector2(-77, -545)
+position = Vector2(-729, -993)
 scale = Vector2(0.998438, 0.989063)
 texture = ExtResource("1_o5qli")
 centered = false
+offset = Vector2(400, -75)
 
 [node name="Player" parent="." instance=ExtResource("2_0wfyh")]
 position = Vector2(-11, -22)
