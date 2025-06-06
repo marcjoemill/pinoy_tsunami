@@ -74,6 +74,7 @@ size = Vector2(9, 27)
 script = ExtResource("1_v6fml")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(600, -250)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1

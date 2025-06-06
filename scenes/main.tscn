@@ -49,7 +49,7 @@ script = SubResource("GDScript_ig7tw")
 ground_scene = ExtResource("2_sugp2")
 
 [node name="Background1" type="Sprite2D" parent="."]
-position = Vector2(-88, -331)
+position = Vector2(-77, -545)
 scale = Vector2(0.998438, 0.989063)
 texture = ExtResource("1_o5qli")
 centered = false
