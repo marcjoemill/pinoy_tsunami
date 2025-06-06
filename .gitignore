@@ -1,0 +1,18 @@
+# Godot-specific
+.import/
+.godot/
+*.import
+*.translation
+*.converted.res
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# Editor-specific
+.vscode/
+.idea/
+
+# Exported builds
+export/
+build/

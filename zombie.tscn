@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://4cmki6dfvypv"]
+
+[ext_resource type="Texture2D" uid="uid://cumdm1jwfogcv" path="res://zombietsunami.png" id="1_uiaus"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_roy8y"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_uiaus")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_roy8y")
