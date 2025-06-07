@@ -14,6 +14,8 @@ script/source = "extends Node2D
 
 @export var ground_scene: PackedScene
 @export var obstacle_scenes: Array[PackedScene]
+var positive_obstacles: Array[PackedScene] = []
+var negative_obstacles: Array[PackedScene] = []
 @export var segment_width: float = 800
 
 var last_segment_x: float = 0
@@ -29,10 +31,17 @@ func _ready():
 	randomize()
 	spawn_ground(0)
 	spawn_ground(segment_width)
-
-	# Set initial ground level and spawn interval
 	ground_y = player.global_position.y
 	obstacle_spawn_interval = randf_range(0.8, 2.0)
+
+	# Categorize obstacles by group (based on scene names or your own logic)
+	for scene in obstacle_scenes:
+		var temp = scene.instantiate()
+		if temp.is_in_group(\"Marites\") or temp.is_in_group(\"Inuman\") or temp.is_in_group(\"Person\"):
+			positive_obstacles.append(scene)
+		else:
+			negative_obstacles.append(scene)
+		temp.queue_free()  # Cleanup
 
 func spawn_ground(x_pos: float):
 	if !ground_scene:
@@ -46,13 +55,18 @@ func spawn_ground(x_pos: float):
 	last_segment_x = x_pos
 
 func spawn_obstacle():
-	if obstacle_scenes.is_empty():
-		push_error(\"Obstacle scenes array is empty!\")
+	if positive_obstacles.is_empty() and negative_obstacles.is_empty():
+		push_error(\"No obstacles available!\")
 		return
 
-	# Pick a random obstacle scene from the list
-	var index := randi() % obstacle_scenes.size()
-	var selected_scene: PackedScene = obstacle_scenes[index]
+	var is_positive := randf() < 0.20  # 25% chance to spawn a positive obstacle
+
+	var selected_scene: PackedScene
+
+	if is_positive and !positive_obstacles.is_empty():
+		selected_scene = positive_obstacles[randi() % positive_obstacles.size()]
+	else:
+		selected_scene = negative_obstacles[randi() % negative_obstacles.size()]
 
 	var obstacle = selected_scene.instantiate()
 	var spawn_x = player.global_position.x + viewport.size.x
