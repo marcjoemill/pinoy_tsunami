@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvh8bos5b3uxb"]
+
+[ext_resource type="Script" uid="uid://cisktkgbvem7p" path="res://scenes/marites.gd" id="1_cdbn4"]
+[ext_resource type="Texture2D" uid="uid://beurm5aap1k8s" path="res://assets/graphics/obstacles/people_marites-Sheet.png" id="2_cdbn4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lypuq"]
+atlas = ExtResource("2_cdbn4")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xyndp"]
+atlas = ExtResource("2_cdbn4")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_eqxcw"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lypuq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xyndp")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[node name="Marites" type="Area2D"]
+script = ExtResource("1_cdbn4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_eqxcw")
+animation = &"talk"
+frame = 1
+frame_progress = 0.133646
+offset = Vector2(0, 5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

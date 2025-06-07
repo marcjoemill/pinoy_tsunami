@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq3774bp3bw7g"]
+
+[ext_resource type="Texture2D" uid="uid://ctko7pkwiu5vi" path="res://assets/graphics/obstacles/obstacle_batongmalake.png" id="1_nfn2k"]
+[ext_resource type="Script" path="res://obstacle.gd" id="1_qaun2"]
+
+[node name="Obstacle" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_qaun2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_nfn2k")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
