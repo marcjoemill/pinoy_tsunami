@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://nxux4xnu267n"]
+[gd_scene load_steps=3 format=3 uid="uid://nxux4xnu267n"]
+
+[ext_resource type="Texture2D" uid="uid://bqmdf4svdu4r0" path="res://assets/graphics/backgrounds/road.png" id="1_hsvk4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r83tp"]
-size = Vector2(1000, 20)
+size = Vector2(364, 40)
 
 [node name="GroundSegment" type="StaticBody2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(500, 10)
+position = Vector2(182, 20)
 shape = SubResource("RectangleShape2D_r83tp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(181, -83)
+scale = Vector2(1.12812, 1.11111)
+texture = ExtResource("1_hsvk4")
