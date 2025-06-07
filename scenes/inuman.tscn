@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgg0oc1at3guf"]
+
+[ext_resource type="Texture2D" uid="uid://dwtbf4ktu0gfs" path="res://assets/graphics/obstacles/Inuman-Sheet.png" id="1_f816v"]
+[ext_resource type="Script" uid="uid://cndjqcydn6uys" path="res://scenes/inuman.gd" id="1_r3p22"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3p22"]
+atlas = ExtResource("1_f816v")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vubmf"]
+atlas = ExtResource("1_f816v")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv2ef"]
+atlas = ExtResource("1_f816v")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_lfg3g"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3p22")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vubmf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv2ef")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Inuman" type="Area2D"]
+script = ExtResource("1_r3p22")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_lfg3g")
+animation = &"new_animation"
+speed_scale = 0.25
