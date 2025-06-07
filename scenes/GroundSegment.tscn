@@ -13,6 +13,6 @@ shape = SubResource("RectangleShape2D_r83tp")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 z_index = -1
-position = Vector2(181, -83)
+position = Vector2(181, -59)
 scale = Vector2(1.12812, 1.11111)
 texture = ExtResource("1_hsvk4")
