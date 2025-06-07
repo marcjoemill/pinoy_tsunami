@@ -3,6 +3,6 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 
 func _ready():
-	add_to_group("Inuman")
+	add_to_group("Person")
 	animated_sprite.play()
 	

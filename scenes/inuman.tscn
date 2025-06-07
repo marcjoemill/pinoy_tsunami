@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bgg0oc1at3guf"]
+[gd_scene load_steps=8 format=3 uid="uid://bgg0oc1at3guf"]
 
 [ext_resource type="Texture2D" uid="uid://dwtbf4ktu0gfs" path="res://assets/graphics/obstacles/Inuman-Sheet.png" id="1_f816v"]
 [ext_resource type="Script" uid="uid://cndjqcydn6uys" path="res://scenes/inuman.gd" id="1_r3p22"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r3p22"]
+size = Vector2(19, 20)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_r3p22"]
 atlas = ExtResource("1_f816v")
@@ -37,10 +40,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Inuman" type="Area2D"]
+[node name="Inuman" type="CharacterBody2D" groups=["Inuman"]]
+scale = Vector2(2, 2)
+collision_mask = 2
 script = ExtResource("1_r3p22")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_r3p22")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lfg3g")

@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://tdo157ods4h"]
+
+[ext_resource type="Script" uid="uid://c5hn5sl66y4wb" path="res://scenes/person.gd" id="1_5dovg"]
+[ext_resource type="Texture2D" uid="uid://baj078561qhpw" path="res://assets/graphics/obstacles/standing_boy_sprite.png" id="1_c62xm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5dovg"]
+size = Vector2(9.33333, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dovg"]
+atlas = ExtResource("1_c62xm")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jf287"]
+atlas = ExtResource("1_c62xm")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h4n5y"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dovg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jf287")
+}],
+"loop": true,
+"name": &"stand",
+"speed": 5.0
+}]
+
+[node name="Person" type="CharacterBody2D" groups=["Person"]]
+scale = Vector2(1.5, 1.5)
+collision_mask = 2
+script = ExtResource("1_5dovg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.666667, 0)
+shape = SubResource("RectangleShape2D_5dovg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_h4n5y")
+animation = &"stand"

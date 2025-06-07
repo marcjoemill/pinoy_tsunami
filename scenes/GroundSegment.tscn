@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://nxux4xnu267n"]
 
-[ext_resource type="Texture2D" uid="uid://xumlpgwuf5an" path="res://assets/graphics/backgrounds/road.png" id="1_hsvk4"]
-[ext_resource type="Texture2D" uid="uid://6pkodkaf0k82" path="res://assets/graphics/backgrounds/bg_sunset.png" id="2_8u0lb"]
+[ext_resource type="Texture2D" uid="uid://oo0xx1ar2v2e" path="res://assets/graphics/backgrounds/road.png" id="1_hsvk4"]
+[ext_resource type="Texture2D" uid="uid://dvgbtthelhe78" path="res://assets/graphics/backgrounds/bg_sunset.png" id="2_8u0lb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r83tp"]
 size = Vector2(800, 40)
