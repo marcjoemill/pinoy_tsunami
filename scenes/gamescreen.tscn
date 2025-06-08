@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bgg0oc1at3guf" path="res://scenes/inuman.tscn" id="5_6ixwp"]
 [ext_resource type="PackedScene" uid="uid://tdo157ods4h" path="res://scenes/person.tscn" id="6_03tes"]
 [ext_resource type="PackedScene" uid="uid://bghwc8roq31g3" path="res://scenes/eagle.tscn" id="7_7kt1n"]
-[ext_resource type="Texture2D" uid="uid://lx47oosoxxfw" path="res://assets/graphics/backgrounds/flatbg.jpg" id="7_8nfvb"]
+[ext_resource type="Texture2D" uid="uid://co2hr51ujn82s" path="res://assets/graphics/backgrounds/flatbg.jpg" id="7_8nfvb"]
 [ext_resource type="PackedScene" uid="uid://bnw55jeq4voyh" path="res://scenes/Player.tscn" id="8_7kt1n"]
-[ext_resource type="AudioStream" uid="uid://driwcgqyohaho" path="res://assets/sfx/Jump.wav" id="9_avas0"]
-[ext_resource type="AudioStream" uid="uid://0k3re32mu23d" path="res://assets/sfx/Rock_Collision.wav" id="10_p4o71"]
-[ext_resource type="AudioStream" uid="uid://d1tdiijg4gccl" path="res://assets/sfx/Ebike_Collision.wav" id="11_6ixwp"]
-[ext_resource type="AudioStream" uid="uid://7nd1mojsthy5" path="res://assets/sfx/Add_Collision.wav" id="12_6ixwp"]
-[ext_resource type="AudioStream" uid="uid://d266mjgf4q5ol" path="res://assets/sfx/game_music.mp3" id="13_03tes"]
-[ext_resource type="AudioStream" uid="uid://brpc7deu88b3d" path="res://assets/sfx/Eagle_Collision.wav" id="14_7kt1n"]
+[ext_resource type="AudioStream" uid="uid://d2st8jimpfkwf" path="res://assets/sfx/Jump.wav" id="9_avas0"]
+[ext_resource type="AudioStream" uid="uid://b340v63148sdh" path="res://assets/sfx/Rock_Collision.wav" id="10_p4o71"]
+[ext_resource type="AudioStream" uid="uid://da2t1b8xbtgef" path="res://assets/sfx/Ebike_Collision.wav" id="11_6ixwp"]
+[ext_resource type="AudioStream" uid="uid://payqw472q2th" path="res://assets/sfx/Add_Collision.wav" id="12_6ixwp"]
+[ext_resource type="AudioStream" uid="uid://bh7bp3r8r052u" path="res://assets/sfx/game_music.mp3" id="13_03tes"]
+[ext_resource type="AudioStream" uid="uid://d3gqeu4jjglrt" path="res://assets/sfx/Eagle_Collision.wav" id="14_7kt1n"]
 
 [sub_resource type="GDScript" id="GDScript_ig7tw"]
 script/source = "extends Node2D
@@ -160,9 +160,6 @@ offset = Vector2(400, -75)
 
 [node name="Player" parent="." instance=ExtResource("8_7kt1n")]
 position = Vector2(-11, -22)
-speed = 300.0
-gravity = 30.0
-jump_force = -800.0
 
 [node name="JumpAudio" type="AudioStreamPlayer" parent="Player"]
 stream = ExtResource("9_avas0")

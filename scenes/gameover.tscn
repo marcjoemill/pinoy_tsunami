@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dbcikop2rl18q"]
 
 [ext_resource type="Script" uid="uid://cj5rwprdub100" path="res://scenes/gameover.gd" id="1_ncp31"]
-[ext_resource type="Texture2D" uid="uid://bqren44hbjpbd" path="res://assets/graphics/backgrounds/GameOver.png" id="2_dy3ie"]
-[ext_resource type="AudioStream" uid="uid://d3joa13ptxrn6" path="res://assets/sfx/game_over_music.mp3" id="3_2mkfd"]
+[ext_resource type="Texture2D" uid="uid://cjx4m7dvxx7k1" path="res://assets/graphics/backgrounds/GameOver.png" id="2_dy3ie"]
+[ext_resource type="AudioStream" uid="uid://dbup74uo7mhjf" path="res://assets/sfx/game_over_music.mp3" id="3_2mkfd"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2mkfd"]
 texture = ExtResource("2_dy3ie")
