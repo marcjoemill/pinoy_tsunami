@@ -1,11 +1,11 @@
 [gd_scene load_steps=8 format=3 uid="uid://bgsbldnouau8u"]
 
 [ext_resource type="Script" uid="uid://4wfd6s7a8g5r" path="res://scenes/menuscreen.gd" id="1_36wy4"]
-[ext_resource type="Texture2D" uid="uid://crbkgau83gwj7" path="res://assets/graphics/button/playbutton1.png" id="2_pis2g"]
-[ext_resource type="Texture2D" uid="uid://cbm2suyigqkmi" path="res://assets/graphics/button/playbutton2.png" id="3_dag5g"]
-[ext_resource type="Texture2D" uid="uid://dbdvvwbic8uc1" path="res://assets/graphics/backgrounds/MainMenu.png" id="4_dag5g"]
-[ext_resource type="AudioStream" uid="uid://m6jrrttrtoy1" path="res://assets/sfx/Click.wav" id="5_7cjh5"]
-[ext_resource type="AudioStream" uid="uid://cqoayuq5ywrxs" path="res://assets/sfx/menu_music.mp3" id="6_wesrc"]
+[ext_resource type="Texture2D" uid="uid://dt4b74vyb6yuy" path="res://assets/graphics/button/playbutton1.png" id="2_pis2g"]
+[ext_resource type="Texture2D" uid="uid://bwddxu2ur6i47" path="res://assets/graphics/button/playbutton2.png" id="3_dag5g"]
+[ext_resource type="Texture2D" uid="uid://bk3k32hnih5sc" path="res://assets/graphics/backgrounds/MainMenu.png" id="4_dag5g"]
+[ext_resource type="AudioStream" uid="uid://dxr4e6sceqt55" path="res://assets/sfx/Click.wav" id="5_7cjh5"]
+[ext_resource type="AudioStream" uid="uid://b5qnpra8x8row" path="res://assets/sfx/menu_music.mp3" id="6_wesrc"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7cjh5"]
 texture = ExtResource("4_dag5g")

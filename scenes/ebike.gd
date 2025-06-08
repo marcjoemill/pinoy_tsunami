@@ -15,3 +15,4 @@ func _process(delta):
 # Called by the main script to adjust difficulty
 func set_speed_multiplier(multiplier: float):
 	speed_multiplier = multiplier
+ 

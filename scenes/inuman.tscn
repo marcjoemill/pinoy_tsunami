@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bgg0oc1at3guf"]
 
-[ext_resource type="Texture2D" uid="uid://birw3jpry444j" path="res://assets/graphics/obstacles/Inuman-Sheet.png" id="1_f816v"]
+[ext_resource type="Texture2D" uid="uid://c7aghgwefhx44" path="res://assets/graphics/obstacles/Inuman-Sheet.png" id="1_f816v"]
 [ext_resource type="Script" uid="uid://cndjqcydn6uys" path="res://scenes/inuman.gd" id="1_r3p22"]
-[ext_resource type="AudioStream" uid="uid://cqoayuq5ywrxs" path="res://assets/sfx/menu_music.mp3" id="3_vubmf"]
+[ext_resource type="AudioStream" uid="uid://b5qnpra8x8row" path="res://assets/sfx/menu_music.mp3" id="3_vubmf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r3p22"]
 size = Vector2(19, 20)

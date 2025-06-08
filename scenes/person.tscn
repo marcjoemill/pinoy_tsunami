@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://tdo157ods4h"]
 
 [ext_resource type="Script" uid="uid://c5hn5sl66y4wb" path="res://scenes/person.gd" id="1_5dovg"]
-[ext_resource type="Texture2D" uid="uid://uatqm67sg3m3" path="res://assets/graphics/obstacles/standing_boy_sprite.png" id="1_c62xm"]
+[ext_resource type="Texture2D" uid="uid://bbq52d5dj2p0g" path="res://assets/graphics/obstacles/standing_boy_sprite.png" id="1_c62xm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5dovg"]
 size = Vector2(9.33333, 20)

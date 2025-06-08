@@ -44,11 +44,16 @@ func update_animation():
 
 func game_over():
 	animated_sprite.stop()
-	print("Game Over!")
-	
 	get_node("/root/GameScreen").is_game_over = true
-	# Optional: transition to game over screen
-	# get_tree().change_scene_to_file("res://GameOver.tscn")
+
+	var final_score = get_node("/root/GameScreen").score
+
+	# Make sure the path matches your actual file structure and name
+	var game_over_scene = preload("res://scenes/gameover.tscn").instantiate()
+	get_tree().root.add_child(game_over_scene)
+	game_over_scene.show_score(final_score)
+
+	get_node("/root/GameScreen").queue_free()
 
 func _on_hitbox_body_entered(body):
 	print("Collided with:", body.name)
