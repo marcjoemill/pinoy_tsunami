@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="game_trial"
-run/main_scene="uid://cvf2kai564eus"
+run/main_scene="uid://bgsbldnouau8u"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 

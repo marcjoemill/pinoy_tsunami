@@ -8,6 +8,9 @@ extends CharacterBody2D
 # Nodes
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hitbox = $Hitbox  # Hitbox is an Area2D node under Player
+@onready var jump_audio = $JumpAudio
+@onready var rock_collision_audio = $RockCollisionAudio
+@onready var ebike_collision_audio = $EbikeCollisionAudio
 
 # Player state
 var player_count: int = 1  # Starts with 1 player
@@ -25,6 +28,7 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = jump_force
+		jump_audio.play()
 
 	move_and_slide()
 
@@ -40,7 +44,7 @@ func game_over():
 	animated_sprite.stop()
 	print("Game Over!")
 	
-	get_node("/root/Main").is_game_over = true
+	get_node("/root/GameScreen").is_game_over = true
 	# Optional: transition to game over screen
 	# get_tree().change_scene_to_file("res://GameOver.tscn")
 
@@ -52,14 +56,16 @@ func _on_hitbox_body_entered(body):
 		player_count += 1
 		body.queue_free()  # Make obstacle disappear
 		
-		get_node("/root/Main").add_score(1) 
+		get_node("/root/GameScreen").add_score(1) 
 
 	elif body.is_in_group("Obstacle"):
 		player_count -= 1
+		rock_collision_audio.play()
 		body.queue_free()  # Make obstacle disappear
 
 	elif body.is_in_group("Ebike"):
 		player_count -= 2
+		ebike_collision_audio.play()
 		body.queue_free()  # Make obstacle disappear
 
 	player_count = clamp(player_count, 0, 5)
