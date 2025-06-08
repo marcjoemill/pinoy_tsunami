@@ -48,5 +48,4 @@ speed_scale = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.33514e-06, 0)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_22fv2")

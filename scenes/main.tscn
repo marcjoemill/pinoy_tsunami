@@ -12,6 +12,7 @@
 [sub_resource type="GDScript" id="GDScript_ig7tw"]
 script/source = "extends Node2D
 
+# === Scene and Obstacle Settings ===
 @export var ground_scene: PackedScene
 @export var obstacle_scenes: Array[PackedScene]
 var positive_obstacles: Array[PackedScene] = []
@@ -31,6 +32,11 @@ var ground_y: float  # Store fixed ground Y position here
 var score = 0
 var is_game_over = false
 
+# === Difficulty Variables ===
+var time_elapsed = 0.0
+var difficulty_timer = 0.0
+var ebike_speed_multiplier = 1.0  # Start at normal speed
+
 func _ready():
 	randomize()
 	spawn_ground(0)
@@ -38,7 +44,7 @@ func _ready():
 	ground_y = player.global_position.y
 	obstacle_spawn_interval = randf_range(0.8, 2.0)
 
-	# Categorize obstacles by group (based on scene names or your own logic)
+	# Categorize obstacles by group
 	for scene in obstacle_scenes:
 		var temp = scene.instantiate()
 		if temp.is_in_group(\"Marites\") or temp.is_in_group(\"Inuman\") or temp.is_in_group(\"Person\"):
@@ -48,6 +54,37 @@ func _ready():
 		temp.queue_free()  # Cleanup
 
 	update_score_label()  # Initialize score label on start
+
+func _process(delta):
+	if is_game_over:
+		return
+
+	# Update time and difficulty
+	time_elapsed += delta
+	difficulty_timer += delta
+
+	if difficulty_timer >= 10.0:
+		difficulty_timer = 0.0
+		ebike_speed_multiplier += 0.2
+		print(\"Difficulty increased! Ebike speed x\", ebike_speed_multiplier)
+
+	# Camera and ground spawning
+	var camera_right_edge = player.global_position.x + (viewport.size.x / 2)
+
+	if camera_right_edge > last_segment_x - segment_width:
+		spawn_ground(last_segment_x + segment_width)
+
+	# Remove old ground segments
+	for child in get_children():
+		if child is StaticBody2D and child.position.x < player.global_position.x - segment_width * 2:
+			child.queue_free()
+
+	# Obstacle spawning
+	obstacle_timer += delta
+	if obstacle_timer >= obstacle_spawn_interval:
+		obstacle_timer = 0
+		spawn_obstacle()
+		obstacle_spawn_interval = randf_range(0.8, 2.0)
 
 func spawn_ground(x_pos: float):
 	if !ground_scene:
@@ -66,7 +103,6 @@ func spawn_obstacle():
 		return
 
 	var is_positive := randf() < 0.20  # 20% chance to spawn a positive obstacle
-
 	var selected_scene: PackedScene
 
 	if is_positive and !positive_obstacles.is_empty():
@@ -79,23 +115,10 @@ func spawn_obstacle():
 	obstacle.global_position = Vector2(spawn_x, ground_y)
 	add_child(obstacle)
 
-func _process(delta):
-	var camera_right_edge = player.global_position.x + (viewport.size.x / 2)
-
-	if camera_right_edge > last_segment_x - segment_width:
-		spawn_ground(last_segment_x + segment_width)
-
-	# Remove old ground segments
-	for child in get_children():
-		if child is StaticBody2D and child.position.x < player.global_position.x - segment_width * 2:
-			child.queue_free()
-
-	# Spawn obstacles periodically
-	obstacle_timer += delta
-	if obstacle_timer >= obstacle_spawn_interval:
-		obstacle_timer = 0
-		spawn_obstacle()
-		obstacle_spawn_interval = randf_range(0.8, 2.0)  # Set next random interval
+	# Apply speed multiplier to Ebike
+	if obstacle.is_in_group(\"Ebike\"):
+		if obstacle.has_method(\"set_speed_multiplier\"):
+			obstacle.set_speed_multiplier(ebike_speed_multiplier)
 
 # === Score Methods ===
 func add_score(amount):
