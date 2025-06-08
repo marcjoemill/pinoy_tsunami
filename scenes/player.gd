@@ -9,6 +9,7 @@ extends CharacterBody2D
 @onready var animated_sprite = $AnimatedSprite2D
 @onready var hitbox = $Hitbox  # Hitbox is an Area2D node under Player
 @onready var jump_audio = $JumpAudio
+@onready var add_collision_audio = $AddCollisionAudio
 @onready var rock_collision_audio = $RockCollisionAudio
 @onready var ebike_collision_audio = $EbikeCollisionAudio
 
@@ -17,6 +18,7 @@ var player_count: int = 1  # Starts with 1 player
 
 func _ready():
 	hitbox.body_entered.connect(_on_hitbox_body_entered)
+	hitbox.area_entered.connect(_on_hitbox_area_entered)
 	update_animation()
 	print("Starting player_count:", player_count)  
 	
@@ -52,13 +54,7 @@ func _on_hitbox_body_entered(body):
 	print("Collided with:", body.name)
 	print("Groups:", body.get_groups())
 
-	if body.is_in_group("Marites") or body.is_in_group("Inuman") or body.is_in_group("Person"):
-		player_count += 1
-		body.queue_free()  # Make obstacle disappear
-		
-		get_node("/root/GameScreen").add_score(1) 
-
-	elif body.is_in_group("Obstacle"):
+	if body.is_in_group("Obstacle"):
 		player_count -= 1
 		rock_collision_audio.play()
 		body.queue_free()  # Make obstacle disappear
@@ -68,6 +64,20 @@ func _on_hitbox_body_entered(body):
 		ebike_collision_audio.play()
 		body.queue_free()  # Make obstacle disappear
 
+	player_count = clamp(player_count, 0, 5)
+	print("Updated player_count:", player_count)
+	update_animation()
+
+func _on_hitbox_area_entered(area):
+	print("Area entered:", area.name)
+	print("Groups:", area.get_groups())
+	
+	if area.is_in_group("Marites") or area.is_in_group("Inuman") or area.is_in_group("Person"):
+		add_collision_audio.play()
+		player_count += 1
+		area.queue_free()
+		get_node("/root/GameScreen").add_score(1) 
+		
 	player_count = clamp(player_count, 0, 5)
 	print("Updated player_count:", player_count)
 	update_animation()
