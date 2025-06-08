@@ -13,51 +13,55 @@ extends CharacterBody2D
 var player_count: int = 1  # Starts with 1 player
 
 func _ready():
-    hitbox.body_entered.connect(_on_hitbox_body_entered)
-    update_animation()
-    print("Starting player_count:", player_count)  
-    
+	hitbox.body_entered.connect(_on_hitbox_body_entered)
+	update_animation()
+	print("Starting player_count:", player_count)  
+	
 func _physics_process(delta):
-    if not is_on_floor():
-        velocity.y += gravity
+	if not is_on_floor():
+		velocity.y += gravity
 
-    velocity.x = speed
+	velocity.x = speed
 
-    if Input.is_action_just_pressed("jump") and is_on_floor():
-        velocity.y = jump_force
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_force
 
-    move_and_slide()
+	move_and_slide()
 
 func update_animation():
-    if player_count <= 0:
-        game_over()
-    elif player_count >= 1 and player_count <= 5:
-        var animation_name = "run_%d" % player_count
-        print("Playing animation:", animation_name)
-        animated_sprite.play(animation_name)
+	if player_count <= 0:
+		game_over()
+	elif player_count >= 1 and player_count <= 5:
+		var animation_name = "run_%d" % player_count
+		print("Playing animation:", animation_name)
+		animated_sprite.play(animation_name)
 
 func game_over():
-    animated_sprite.stop()
-    print("Game Over!")
-    # Optional: transition to game over screen
-    # get_tree().change_scene_to_file("res://GameOver.tscn")
+	animated_sprite.stop()
+	print("Game Over!")
+	
+	get_node("/root/Main").is_game_over = true
+	# Optional: transition to game over screen
+	# get_tree().change_scene_to_file("res://GameOver.tscn")
 
 func _on_hitbox_body_entered(body):
-    print("Collided with:", body.name)
-    print("Groups:", body.get_groups())
+	print("Collided with:", body.name)
+	print("Groups:", body.get_groups())
 
-    if body.is_in_group("Marites") or body.is_in_group("Inuman") or body.is_in_group("Person"):
-        player_count += 1
-        body.queue_free()  # Make obstacle disappear
+	if body.is_in_group("Marites") or body.is_in_group("Inuman") or body.is_in_group("Person"):
+		player_count += 1
+		body.queue_free()  # Make obstacle disappear
+		
+		get_node("/root/Main").add_score(1) 
 
-    elif body.is_in_group("Obstacle"):
-        player_count -= 1
-        body.queue_free()  # Make obstacle disappear
+	elif body.is_in_group("Obstacle"):
+		player_count -= 1
+		body.queue_free()  # Make obstacle disappear
 
-    elif body.is_in_group("Ebike"):
-        player_count -= 2
-        body.queue_free()  # Make obstacle disappear
+	elif body.is_in_group("Ebike"):
+		player_count -= 2
+		body.queue_free()  # Make obstacle disappear
 
-    player_count = clamp(player_count, 0, 5)
-    print("Updated player_count:", player_count)
-    update_animation()
+	player_count = clamp(player_count, 0, 5)
+	print("Updated player_count:", player_count)
+	update_animation()

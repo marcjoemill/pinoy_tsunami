@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cvh8bos5b3uxb"]
 
 [ext_resource type="Script" uid="uid://cisktkgbvem7p" path="res://scenes/marites.gd" id="1_cdbn4"]
-[ext_resource type="Texture2D" uid="uid://beurm5aap1k8s" path="res://assets/graphics/obstacles/people_marites-Sheet.png" id="2_cdbn4"]
+[ext_resource type="Texture2D" uid="uid://k04gyuvywhio" path="res://assets/graphics/obstacles/people_marites-Sheet.png" id="2_cdbn4"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lypuq"]
 atlas = ExtResource("2_cdbn4")
@@ -34,7 +34,7 @@ animations = [{
 radius = 11.0
 height = 25.0
 
-[node name="Marites" type="CharacterBody2D" groups=["Marites"]]
+[node name="Marites" type="CharacterBody2D" groups=["Marites", "PositiveObstacle"]]
 scale = Vector2(2, 2)
 collision_mask = 2
 script = ExtResource("1_cdbn4")

@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvf2kai564eus"]
+[gd_scene load_steps=11 format=3 uid="uid://cvf2kai564eus"]
 
-[ext_resource type="Texture2D" uid="uid://bkfufpuin4pky" path="res://assets/graphics/backgrounds/flatbg.jpg" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://co2hr51ujn82s" path="res://assets/graphics/backgrounds/flatbg.jpg" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://bnw55jeq4voyh" path="res://scenes/Player.tscn" id="2_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://nxux4xnu267n" path="res://scenes/GroundSegment.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://w7tqxoey71x8" path="res://scenes/Obstacle.tscn" id="2_tbgi4"]
@@ -27,6 +27,10 @@ var obstacle_spawn_interval: float = 0.0  # Will be randomized
 
 var ground_y: float  # Store fixed ground Y position here
 
+# === Score Variables ===
+var score = 0
+var is_game_over = false
+
 func _ready():
 	randomize()
 	spawn_ground(0)
@@ -42,6 +46,8 @@ func _ready():
 		else:
 			negative_obstacles.append(scene)
 		temp.queue_free()  # Cleanup
+
+	update_score_label()  # Initialize score label on start
 
 func spawn_ground(x_pos: float):
 	if !ground_scene:
@@ -59,7 +65,7 @@ func spawn_obstacle():
 		push_error(\"No obstacles available!\")
 		return
 
-	var is_positive := randf() < 0.20  # 25% chance to spawn a positive obstacle
+	var is_positive := randf() < 0.20  # 20% chance to spawn a positive obstacle
 
 	var selected_scene: PackedScene
 
@@ -90,7 +96,19 @@ func _process(delta):
 		obstacle_timer = 0
 		spawn_obstacle()
 		obstacle_spawn_interval = randf_range(0.8, 2.0)  # Set next random interval
+
+# === Score Methods ===
+func add_score(amount):
+	if is_game_over:
+		return
+	score += amount
+	update_score_label()
+
+func update_score_label():
+	$UI/ScoreLabel.text = \"Score: %d\" % score
 "
+
+[sub_resource type="LabelSettings" id="LabelSettings_tipki"]
 
 [node name="Main" type="Node2D"]
 script = SubResource("GDScript_ig7tw")
@@ -109,3 +127,13 @@ position = Vector2(-11, -22)
 
 [node name="BackgroundSprite" type="Sprite2D" parent="."]
 centered = false
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 81.0
+offset_bottom = 43.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_tipki")

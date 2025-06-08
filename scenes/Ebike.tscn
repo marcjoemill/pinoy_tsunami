@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://rpyrkdq452mu"]
 
-[ext_resource type="Script" uid="uid://cnpuga6v3o4ij" path="res://ebike.gd" id="1_22fv2"]
-[ext_resource type="Texture2D" uid="uid://br4ga7s72gjc0" path="res://assets/graphics/obstacles/ebike-Sheet.png" id="2_aisxr"]
+[ext_resource type="Script" uid="uid://cnpuga6v3o4ij" path="res://scenes/ebike.gd" id="1_22fv2"]
+[ext_resource type="Texture2D" uid="uid://gqntm6vm0rtd" path="res://assets/graphics/obstacles/ebike-Sheet.png" id="2_aisxr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1x5b"]
 atlas = ExtResource("2_aisxr")
