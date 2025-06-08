@@ -6,6 +6,7 @@ extends Control
 
 func _ready():
 	show_score(Global.last_score)
+	game_over_music.stream.loop = true
 	game_over_music.play()
 
 func show_score(final_score):

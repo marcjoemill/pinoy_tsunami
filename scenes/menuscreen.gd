@@ -15,6 +15,7 @@ func _ready():
 	start_button.texture_pressed = pressed_texture
 	start_button.toggle_mode = true
 	
+	menu_music.stream.loop = true
 	menu_music.play()
 	help_panel.visible = false
 

@@ -7,14 +7,14 @@
 [ext_resource type="PackedScene" uid="uid://bgg0oc1at3guf" path="res://scenes/inuman.tscn" id="5_6ixwp"]
 [ext_resource type="PackedScene" uid="uid://tdo157ods4h" path="res://scenes/person.tscn" id="6_03tes"]
 [ext_resource type="PackedScene" uid="uid://bghwc8roq31g3" path="res://scenes/eagle.tscn" id="7_7kt1n"]
-[ext_resource type="Texture2D" uid="uid://co2hr51ujn82s" path="res://assets/graphics/backgrounds/flatbg.jpg" id="7_8nfvb"]
+[ext_resource type="Texture2D" uid="uid://c0t5g44fp870s" path="res://assets/graphics/backgrounds/flatbg.jpg" id="7_8nfvb"]
 [ext_resource type="PackedScene" uid="uid://bnw55jeq4voyh" path="res://scenes/Player.tscn" id="8_7kt1n"]
-[ext_resource type="AudioStream" uid="uid://d2st8jimpfkwf" path="res://assets/sfx/Jump.wav" id="9_avas0"]
-[ext_resource type="AudioStream" uid="uid://b340v63148sdh" path="res://assets/sfx/Rock_Collision.wav" id="10_p4o71"]
-[ext_resource type="AudioStream" uid="uid://da2t1b8xbtgef" path="res://assets/sfx/Ebike_Collision.wav" id="11_6ixwp"]
-[ext_resource type="AudioStream" uid="uid://payqw472q2th" path="res://assets/sfx/Add_Collision.wav" id="12_6ixwp"]
-[ext_resource type="AudioStream" uid="uid://bh7bp3r8r052u" path="res://assets/sfx/game_music.mp3" id="13_03tes"]
-[ext_resource type="AudioStream" uid="uid://d3gqeu4jjglrt" path="res://assets/sfx/Eagle_Collision.wav" id="14_7kt1n"]
+[ext_resource type="AudioStream" uid="uid://cu30u6id2ox81" path="res://assets/sfx/Jump.wav" id="9_avas0"]
+[ext_resource type="AudioStream" uid="uid://ck1p5gd8d6768" path="res://assets/sfx/Rock_Collision.wav" id="10_p4o71"]
+[ext_resource type="AudioStream" uid="uid://bb8w8l4osg62x" path="res://assets/sfx/Ebike_Collision.wav" id="11_6ixwp"]
+[ext_resource type="AudioStream" uid="uid://2abhjccmti6b" path="res://assets/sfx/Add_Collision.wav" id="12_6ixwp"]
+[ext_resource type="AudioStream" uid="uid://c25nfwpw37xs7" path="res://assets/sfx/game_music.mp3" id="13_03tes"]
+[ext_resource type="AudioStream" uid="uid://ba3fnmvxcoelp" path="res://assets/sfx/Eagle_Collision.wav" id="14_7kt1n"]
 
 [sub_resource type="GDScript" id="GDScript_ig7tw"]
 script/source = "extends Node2D
@@ -52,6 +52,7 @@ func _ready():
 	ground_y = player.global_position.y
 	obstacle_spawn_interval = randf_range(0.8, 2.0)
 	
+	game_music.stream.loop = true
 	game_music.play()
 
 	# Categorize obstacles by group
