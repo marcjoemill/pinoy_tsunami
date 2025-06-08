@@ -5,6 +5,7 @@ extends Control
 
 func _ready():
     back_button.pressed.connect(_on_back_to_menu)
+    show_score(Global.last_score)
 
 func show_score(final_score):
     score_label.text = "Your Score: %d" % final_score

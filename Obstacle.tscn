@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bq3774bp3bw7g"]
 
-[ext_resource type="Texture2D" uid="uid://ctko7pkwiu5vi" path="res://assets/graphics/obstacles/obstacle_batongmalake.png" id="1_nfn2k"]
+[ext_resource type="Texture2D" uid="uid://dmidwl1vt0c6l" path="res://assets/graphics/obstacles/obstacle_batongmalake.png" id="1_nfn2k"]
 [ext_resource type="Script" uid="uid://bvk6i33qo7wsp" path="res://obstacle.gd" id="1_qaun2"]
 
 [node name="Obstacle" type="Area2D"]

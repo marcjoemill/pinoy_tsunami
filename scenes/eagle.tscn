@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://bghwc8roq31g3"]
+
+[ext_resource type="Script" uid="uid://d34nnd3ymlcjv" path="res://eagle.gd" id="1_jdxlk"]
+[ext_resource type="Texture2D" uid="uid://bghgw0xvyujga" path="res://assets/graphics/obstacles/eagle-Sheet.png" id="2_g2fde"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wwoj"]
+atlas = ExtResource("2_g2fde")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ohb7"]
+atlas = ExtResource("2_g2fde")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32mqa"]
+atlas = ExtResource("2_g2fde")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_av1ye"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wwoj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ohb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32mqa")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgv6x"]
+size = Vector2(19, 18.5)
+
+[node name="Eagle" type="CharacterBody2D" groups=["Eagle"]]
+scale = Vector2(2, 2)
+script = ExtResource("1_jdxlk")
+speed = 300.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_av1ye")
+animation = &"fly"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-2.5, 1.75)
+shape = SubResource("RectangleShape2D_xgv6x")
