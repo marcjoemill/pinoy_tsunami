@@ -12,81 +12,82 @@ extends CharacterBody2D
 @onready var add_collision_audio = $AddCollisionAudio
 @onready var rock_collision_audio = $RockCollisionAudio
 @onready var ebike_collision_audio = $EbikeCollisionAudio
+@onready var eagle_collision_audio = $EagleCollisionAudio
 
 # Player state
 var player_count: int = 1  # Starts with 1 player
 
 func _ready():
-    hitbox.body_entered.connect(_on_hitbox_body_entered)
-    hitbox.area_entered.connect(_on_hitbox_area_entered)
-    update_animation()
-    print("Starting player_count:", player_count)  
-    
+	hitbox.body_entered.connect(_on_hitbox_body_entered)
+	hitbox.area_entered.connect(_on_hitbox_area_entered)
+	update_animation()
+	print("Starting player_count:", player_count)  
+	
 func _physics_process(delta):
-    if not is_on_floor():
-        velocity.y += gravity
+	if not is_on_floor():
+		velocity.y += gravity
 
-    velocity.x = speed
+	velocity.x = speed
 
-    if Input.is_action_just_pressed("jump") and is_on_floor():
-        velocity.y = jump_force
-        jump_audio.play()
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = jump_force
+		jump_audio.play()
 
-    move_and_slide()
+	move_and_slide()
 
 func update_animation():
-    if player_count <= 0:
-        game_over()
-    elif player_count >= 1 and player_count <= 5:
-        var animation_name = "run_%d" % player_count
-        print("Playing animation:", animation_name)
-        animated_sprite.play(animation_name)
+	if player_count <= 0:
+		game_over()
+	elif player_count >= 1 and player_count <= 5:
+		var animation_name = "run_%d" % player_count
+		print("Playing animation:", animation_name)
+		animated_sprite.play(animation_name)
 
 func game_over():
-    animated_sprite.stop()
-    get_node("/root/GameScreen").is_game_over = true
+	animated_sprite.stop()
+	get_node("/root/GameScreen").is_game_over = true
 
-    var final_score = get_node("/root/GameScreen").score
+	var final_score = get_node("/root/GameScreen").score
 
-    # Pass score using autoload or singleton instead (preferred)
-    Global.last_score = final_score
+	# Pass score using autoload or singleton instead (preferred)
+	Global.last_score = final_score
 
-    get_tree().change_scene_to_file("res://scenes/gameover.tscn")  # Cleanly loads new scene
+	get_tree().change_scene_to_file("res://scenes/gameover.tscn")  # Cleanly loads new scene
 
 
 func _on_hitbox_body_entered(body):
-    print("Collided with:", body.name)
-    print("Groups:", body.get_groups())
+	print("Collided with:", body.name)
+	print("Groups:", body.get_groups())
 
-    if body.is_in_group("Obstacle"):
-        player_count -= 1
-        rock_collision_audio.play()
-        body.queue_free()  # Make obstacle disappear
-        
-    if body.is_in_group("Eagle"):
-        player_count -= 1
-        rock_collision_audio.play()
-        body.queue_free()  # Make obstacle disappear
+	if body.is_in_group("Obstacle"):
+		player_count -= 1
+		rock_collision_audio.play()
+		body.queue_free()  # Make obstacle disappear
+		
+	if body.is_in_group("Eagle"):
+		player_count -= 1
+		eagle_collision_audio.play()
+		body.queue_free()  # Make obstacle disappear
 
-    elif body.is_in_group("Ebike"):
-        player_count -= 2
-        ebike_collision_audio.play()
-        body.queue_free()  # Make obstacle disappear
+	elif body.is_in_group("Ebike"):
+		player_count -= 2
+		ebike_collision_audio.play()
+		body.queue_free()  # Make obstacle disappear
 
-    player_count = clamp(player_count, 0, 5)
-    print("Updated player_count:", player_count)
-    update_animation()
+	player_count = clamp(player_count, 0, 5)
+	print("Updated player_count:", player_count)
+	update_animation()
 
 func _on_hitbox_area_entered(area):
-    print("Area entered:", area.name)
-    print("Groups:", area.get_groups())
-    
-    if area.is_in_group("Marites") or area.is_in_group("Inuman") or area.is_in_group("Person"):
-        add_collision_audio.play()
-        player_count += 1
-        area.queue_free()
-        get_node("/root/GameScreen").add_score(1) 
-        
-    player_count = clamp(player_count, 0, 5)
-    print("Updated player_count:", player_count)
-    update_animation()
+	print("Area entered:", area.name)
+	print("Groups:", area.get_groups())
+	
+	if area.is_in_group("Marites") or area.is_in_group("Inuman") or area.is_in_group("Person"):
+		add_collision_audio.play()
+		player_count += 1
+		area.queue_free()
+		get_node("/root/GameScreen").add_score(1) 
+		
+	player_count = clamp(player_count, 0, 5)
+	print("Updated player_count:", player_count)
+	update_animation()

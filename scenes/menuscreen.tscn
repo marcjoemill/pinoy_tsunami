@@ -1,14 +1,20 @@
-[gd_scene load_steps=8 format=3 uid="uid://bgsbldnouau8u"]
+[gd_scene load_steps=12 format=3 uid="uid://bgsbldnouau8u"]
 
 [ext_resource type="Script" uid="uid://4wfd6s7a8g5r" path="res://scenes/menuscreen.gd" id="1_36wy4"]
-[ext_resource type="Texture2D" uid="uid://dt4b74vyb6yuy" path="res://assets/graphics/button/playbutton1.png" id="2_pis2g"]
-[ext_resource type="Texture2D" uid="uid://bwddxu2ur6i47" path="res://assets/graphics/button/playbutton2.png" id="3_dag5g"]
-[ext_resource type="Texture2D" uid="uid://bk3k32hnih5sc" path="res://assets/graphics/backgrounds/MainMenu.png" id="4_dag5g"]
-[ext_resource type="AudioStream" uid="uid://dxr4e6sceqt55" path="res://assets/sfx/Click.wav" id="5_7cjh5"]
-[ext_resource type="AudioStream" uid="uid://b5qnpra8x8row" path="res://assets/sfx/menu_music.mp3" id="6_wesrc"]
+[ext_resource type="Texture2D" uid="uid://sp5y4qyejkhe" path="res://assets/graphics/button/playbutton1.png" id="2_pis2g"]
+[ext_resource type="Texture2D" uid="uid://cjol6amvuqbke" path="res://assets/graphics/button/playbutton2.png" id="3_dag5g"]
+[ext_resource type="Texture2D" uid="uid://dbdvvwbic8uc1" path="res://assets/graphics/backgrounds/MainMenu.png" id="4_dag5g"]
+[ext_resource type="AudioStream" uid="uid://m6jrrttrtoy1" path="res://assets/sfx/Click.wav" id="5_7cjh5"]
+[ext_resource type="AudioStream" uid="uid://cqoayuq5ywrxs" path="res://assets/sfx/menu_music.mp3" id="6_wesrc"]
+[ext_resource type="Texture2D" uid="uid://dvd3cgi7hehar" path="res://assets/graphics/button/helpbutton1.png" id="7_waika"]
+[ext_resource type="Texture2D" uid="uid://djadoxv00iims" path="res://assets/graphics/button/helpbutton2.png" id="8_3redw"]
+[ext_resource type="Texture2D" uid="uid://dj4iucev34uws" path="res://assets/graphics/backgrounds/Instructions.png" id="9_3redw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7cjh5"]
 texture = ExtResource("4_dag5g")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hsxs2"]
+texture = ExtResource("9_3redw")
 
 [node name="MenuScreen" type="Control"]
 layout_mode = 3
@@ -19,11 +25,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_36wy4")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="Background" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 640.0
 theme_override_styles/panel = SubResource("StyleBoxTexture_7cjh5")
+
+[node name="ClickAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_7cjh5")
+
+[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_wesrc")
 
 [node name="StartButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -32,21 +44,39 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -32.9999
-offset_top = 108.0
-offset_right = 31.0001
-offset_bottom = 172.0
+offset_left = -106.0
+offset_top = -41.0
+offset_right = 14.0
+offset_bottom = 23.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.12, 2.08)
-pivot_offset = Vector2(31, 31)
+scale = Vector2(1.75928, 1.51116)
 texture_normal = ExtResource("2_pis2g")
 texture_pressed = ExtResource("3_dag5g")
 
-[node name="ClickAudio" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_7cjh5")
+[node name="HelpButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -87.0
+offset_top = 66.0
+offset_right = 33.0
+offset_bottom = 130.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.44883, 1.23566)
+texture_normal = ExtResource("7_waika")
+texture_pressed = ExtResource("8_3redw")
 
-[node name="MenuMusic" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6_wesrc")
+[node name="HelpPanel" type="Panel" parent="."]
+visible = false
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 640.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_hsxs2")
 
 [connection signal="pressed" from="StartButton" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="HelpButton" to="." method="_on_help_pressed"]
