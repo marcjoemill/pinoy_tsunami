@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://rpyrkdq452mu"]
 
 [ext_resource type="Script" uid="uid://cnpuga6v3o4ij" path="res://scenes/ebike.gd" id="1_22fv2"]
-[ext_resource type="Texture2D" uid="uid://gqntm6vm0rtd" path="res://assets/graphics/obstacles/ebike-Sheet.png" id="2_aisxr"]
+[ext_resource type="Texture2D" uid="uid://bvimxjmgtjfdl" path="res://assets/graphics/obstacles/ebike-Sheet.png" id="2_aisxr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w1x5b"]
 atlas = ExtResource("2_aisxr")
@@ -43,8 +43,7 @@ speed = 300.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_su3dh")
 animation = &"run"
-frame_progress = 0.903474
-speed_scale = 0.1
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.33514e-06, 0)
