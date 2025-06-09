@@ -19,6 +19,9 @@ func show_score(final_score):
 	score_label.text = "%d" % final_score
 
 func _input(event):
+	if input_blocked:
+		return
+
 	if event is InputEventMouseButton or event is InputEventKey:
 		game_over_music.stop()
 		get_tree().change_scene_to_file("res://scenes/menuscreen.tscn")
