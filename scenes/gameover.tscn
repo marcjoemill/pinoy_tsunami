@@ -1,11 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://dbcikop2rl18q"]
+[gd_scene load_steps=8 format=3 uid="uid://dbcikop2rl18q"]
 
 [ext_resource type="Script" uid="uid://cj5rwprdub100" path="res://scenes/gameover.gd" id="1_ncp31"]
-[ext_resource type="Texture2D" uid="uid://cjx4m7dvxx7k1" path="res://assets/graphics/backgrounds/GameOver.png" id="2_dy3ie"]
-[ext_resource type="AudioStream" uid="uid://dbup74uo7mhjf" path="res://assets/sfx/game_over_music.mp3" id="3_2mkfd"]
+[ext_resource type="Texture2D" uid="uid://dvchyxvjpw3t8" path="res://assets/graphics/backgrounds/game_over_screen1.png" id="2_qwp2v"]
+[ext_resource type="AudioStream" uid="uid://dj04scrshibbo" path="res://assets/sfx/game_over_music.mp3" id="3_2mkfd"]
+[ext_resource type="Texture2D" uid="uid://ddjsh1o5p1k22" path="res://assets/graphics/backgrounds/game_over_screen2.png" id="3_3gj0k"]
+[ext_resource type="Texture2D" uid="uid://dxjqlvnvnhdld" path="res://assets/graphics/backgrounds/game_over_screen3.png" id="4_ke020"]
+[ext_resource type="Texture2D" uid="uid://c0wgjsnf2qt8a" path="res://assets/graphics/backgrounds/game_over_screen4.png" id="5_r8puk"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_2mkfd"]
-texture = ExtResource("2_dy3ie")
+[sub_resource type="SpriteFrames" id="SpriteFrames_hvwf0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_qwp2v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3gj0k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ke020")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_r8puk")
+}],
+"loop": true,
+"name": &"animated",
+"speed": 1.2
+}]
 
 [node name="gameover" type="Control"]
 layout_mode = 3
@@ -14,11 +34,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_ncp31")
 
-[node name="Background" type="Panel" parent="."]
-layout_mode = 0
-offset_right = 1280.0
-offset_bottom = 640.0
-theme_override_styles/panel = SubResource("StyleBoxTexture_2mkfd")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(640, 320)
+scale = Vector2(0.32, 0.32)
+sprite_frames = SubResource("SpriteFrames_hvwf0")
+animation = &"animated"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
