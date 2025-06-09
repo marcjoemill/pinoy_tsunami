@@ -1,14 +1,14 @@
 [gd_scene load_steps=12 format=3 uid="uid://bgsbldnouau8u"]
 
 [ext_resource type="Script" uid="uid://4wfd6s7a8g5r" path="res://scenes/menuscreen.gd" id="1_36wy4"]
-[ext_resource type="Texture2D" uid="uid://dj0dy17fwhunm" path="res://assets/graphics/button/playbutton1.png" id="2_pis2g"]
-[ext_resource type="Texture2D" uid="uid://covpkhosffwdt" path="res://assets/graphics/button/playbutton2.png" id="3_dag5g"]
-[ext_resource type="Texture2D" uid="uid://dy5jcsws6t5up" path="res://assets/graphics/backgrounds/MainMenu.png" id="4_dag5g"]
-[ext_resource type="AudioStream" uid="uid://bp0mjalqy6xva" path="res://assets/sfx/Click.wav" id="5_7cjh5"]
-[ext_resource type="AudioStream" uid="uid://bj2gw0moy5ey2" path="res://assets/sfx/menu_music.mp3" id="6_wesrc"]
-[ext_resource type="Texture2D" uid="uid://pp26dsm8rbi5" path="res://assets/graphics/button/helpbutton1.png" id="7_waika"]
-[ext_resource type="Texture2D" uid="uid://ck4i26sssgtco" path="res://assets/graphics/button/helpbutton2.png" id="8_3redw"]
-[ext_resource type="Texture2D" uid="uid://ble30xsjt6mvl" path="res://assets/graphics/backgrounds/Instructions.png" id="9_3redw"]
+[ext_resource type="Texture2D" uid="uid://k07p0wxrw4ls" path="res://assets/graphics/button/playbutton1.png" id="2_pis2g"]
+[ext_resource type="Texture2D" uid="uid://8ytfq6spp1a7" path="res://assets/graphics/button/playbutton2.png" id="3_dag5g"]
+[ext_resource type="Texture2D" uid="uid://bfaysnqlmdx5b" path="res://assets/graphics/backgrounds/MainMenu.png" id="4_dag5g"]
+[ext_resource type="AudioStream" uid="uid://caelg4oj4h8vs" path="res://assets/sfx/Click.wav" id="5_7cjh5"]
+[ext_resource type="AudioStream" uid="uid://bbnl0tj13s3ol" path="res://assets/sfx/menu_music.mp3" id="6_wesrc"]
+[ext_resource type="Texture2D" uid="uid://bu8k8kmo5vfku" path="res://assets/graphics/button/helpbutton1.png" id="7_waika"]
+[ext_resource type="Texture2D" uid="uid://b1jhjqnpuj4qn" path="res://assets/graphics/button/helpbutton2.png" id="8_3redw"]
+[ext_resource type="Texture2D" uid="uid://crkwrjov71025" path="res://assets/graphics/backgrounds/Instructions.png" id="9_3redw"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7cjh5"]
 texture = ExtResource("4_dag5g")

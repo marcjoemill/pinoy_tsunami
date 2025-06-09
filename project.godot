@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="game_trial"
+config/name="Lakbayan"
 run/main_scene="uid://bgsbldnouau8u"
 config/features=PackedStringArray("4.4", "Mobile")
-config/icon="res://icon.svg"
+config/icon="uid://bk3bheoqawr2f"
 
 [autoload]
 
@@ -40,4 +40,5 @@ jump={
 
 [rendering]
 
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
+renderer/rendering_method.mobile="gl_compatibility"
